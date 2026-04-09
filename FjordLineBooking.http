@@ -1,0 +1,6 @@
+@FjordLineBooking_HostAddress = http://localhost:5082
+
+GET {{FjordLineBooking_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
