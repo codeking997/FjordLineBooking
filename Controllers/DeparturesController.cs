@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FjordLineBooking.Services;
 using FjordLineBooking.Models;
+using FjordLineBooking.DTOs;
 
 namespace FjordLineBooking.Controllers;
 
@@ -31,14 +32,34 @@ public class DeparturesController : ControllerBase
     }
 
     [HttpPost("{id}/bookings")]
-    public IActionResult CreateBooking(Guid id, [FromBody] Booking booking)
+    public IActionResult CreateBooking(Guid id, [FromBody] CreateBookingRequest request)
     {
-        booking.BookingId = Guid.NewGuid();
+        if (request.PassengerCount <= 0)
+            return BadRequest(new { error = "Passenger count must be greater than 0" });
+
+        if (string.IsNullOrWhiteSpace(request.Name))
+            return BadRequest(new { error = "Name is required" });
+
+        var booking = new Booking
+        {
+            BookingId = Guid.NewGuid(),
+            Name = request.Name,
+            PassengerCount = request.PassengerCount,
+            HasVehicle = request.HasVehicle
+        };
 
         if (!_service.TryAddBooking(id, booking, out var error))
             return BadRequest(new { error });
 
-        return Ok(booking);
+        var response = new BookingResponse
+        {
+            Id = booking.BookingId,
+            Name = booking.Name,
+            PassengersCount = booking.PassengerCount,
+            HasVehicle = booking.HasVehicle
+        };
+
+        return Ok(response);
     }
 
     [HttpGet("{id}/manifest")]
