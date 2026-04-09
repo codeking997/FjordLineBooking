@@ -31,3 +31,7 @@ C:\Users\CSoile\FjordLineBooking\obj\Debug\net10.0\refint\FjordLineBooking.dll
 C:\Users\CSoile\FjordLineBooking\obj\Debug\net10.0\FjordLineBooking.pdb
 C:\Users\CSoile\FjordLineBooking\obj\Debug\net10.0\FjordLineBooking.genruntimeconfig.cache
 C:\Users\CSoile\FjordLineBooking\obj\Debug\net10.0\ref\FjordLineBooking.dll
+C:\Users\CSoile\FjordLineBooking\obj\Debug\net10.0\FjordLineBooking.sourcelink.json
+C:\Users\CSoile\FjordLineBooking\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\CSoile\FjordLineBooking\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\CSoile\FjordLineBooking\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
