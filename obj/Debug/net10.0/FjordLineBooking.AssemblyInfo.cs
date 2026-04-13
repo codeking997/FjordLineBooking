@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FjordLineBooking")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae106844ac7814495ae7fe23be085db7aa544485")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c3b2c516b369d21fcd08168b1f88cbab8ded6c38")]
 [assembly: System.Reflection.AssemblyProductAttribute("FjordLineBooking")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FjordLineBooking")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

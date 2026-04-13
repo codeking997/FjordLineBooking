@@ -503,11 +503,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CSoile\\FjordLineBooking\\FjordLineBooking.csproj",
+      "projectUniqueName": "C:\\Users\\CSoile\\RiderProjects\\FjordLineBooking\\FjordLineBooking.csproj",
       "projectName": "FjordLineBooking",
-      "projectPath": "C:\\Users\\CSoile\\FjordLineBooking\\FjordLineBooking.csproj",
+      "projectPath": "C:\\Users\\CSoile\\RiderProjects\\FjordLineBooking\\FjordLineBooking.csproj",
       "packagesPath": "C:\\Users\\CSoile\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CSoile\\FjordLineBooking\\obj\\",
+      "outputPath": "C:\\Users\\CSoile\\RiderProjects\\FjordLineBooking\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\CSoile\\AppData\\Roaming\\NuGet\\NuGet.Config"
