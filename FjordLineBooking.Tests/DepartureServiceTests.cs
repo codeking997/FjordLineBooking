@@ -29,21 +29,23 @@ public class DepartureServiceTests
     [Fact]
     public void TryAddBooking_ReturnsFalse_WhenBookingExceedsRemainingCapacity()
     {
-        var originalDepartures = InMemoryData.Departures;
+        var originalDepartures = InMemoryData.Departures
+            .Select(d => d).ToList();
         var departure = new Departure
         {
             Id = Guid.NewGuid(),
             Capacity = 5,
-            Bookings = { new Booking { BookingId = Guid.NewGuid(), PassengerCount = 4 } }
+            Bookings = { new Booking { Id = Guid.NewGuid(), PassengerCount = 4 } }
         };
 
-        InMemoryData.Departures = new List<Departure> { departure };
-
+        InMemoryData.Departures.Clear();
+        InMemoryData.Departures.Add(departure);
+        
         try
         {
             var booking = new Booking
             {
-                BookingId = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 Name = "Test Passenger",
                 PassengerCount = 2
             };
@@ -58,7 +60,8 @@ public class DepartureServiceTests
         }
         finally
         {
-            InMemoryData.Departures = originalDepartures;
+            InMemoryData.Departures.Clear();
+            InMemoryData.Departures.AddRange(originalDepartures);
         }
     }
 
@@ -75,15 +78,15 @@ public class DepartureServiceTests
             {
                 new Booking
                 {
-                    BookingId = bookingId,
+                    Id = bookingId,
                     Name = "Test Passenger",
                     PassengerCount = 2
                 }
             }
         };
 
-        InMemoryData.Departures = new List<Departure> { departure };
-
+        InMemoryData.Departures.Clear();
+        InMemoryData.Departures.Add(departure);
         try
         {
             var service = new DepartureService();
@@ -103,11 +106,19 @@ public class DepartureServiceTests
     {
         // arrange
         var service = new DepartureService();
-        var departure = service.GetAll().First();
+        var departure = new Departure
+        {
+            Id = Guid.NewGuid(),
+            Capacity = 100,
+            Bookings = new List<Booking>()
+        };
+
+        InMemoryData.Departures.Clear();
+        InMemoryData.Departures.Add(departure);
 
         var booking = new Booking
         {
-            BookingId = Guid.NewGuid(),
+            Id = Guid.NewGuid(),
             Name = "Carl",
             PassengerCount = 5,
             HasVehicle = false
@@ -117,7 +128,7 @@ public class DepartureServiceTests
         var capacityAfterBooking = service.GetRemainingCapacity(departure);
 
         // act
-        service.RemoveBooking(departure.Id, booking.BookingId);
+        service.RemoveBooking(departure.Id, booking.Id);
         var capacityAfterCancel = service.GetRemainingCapacity(departure);
 
         // assert

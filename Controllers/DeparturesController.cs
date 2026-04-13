@@ -42,7 +42,7 @@ public class DeparturesController : ControllerBase
 
         var booking = new Booking
         {
-            BookingId = Guid.NewGuid(),
+            Id = Guid.NewGuid(),
             Name = request.Name,
             PassengerCount = request.PassengerCount,
             HasVehicle = request.HasVehicle
@@ -53,9 +53,9 @@ public class DeparturesController : ControllerBase
 
         var response = new BookingResponse
         {
-            Id = booking.BookingId,
+            Id = booking.Id,
             Name = booking.Name,
-            PassengersCount = booking.PassengerCount,
+            PassengerCount = booking.PassengerCount,
             HasVehicle = booking.HasVehicle
         };
 
@@ -65,15 +65,29 @@ public class DeparturesController : ControllerBase
     [HttpGet("{id}/manifest")]
     public IActionResult GetManifest(Guid id)
     {
+        if (id == Guid.Empty)
+        {
+            return BadRequest(new { error = "Invalid departure id" });
+        }
         var departure = _service.GetById(id);
         if (departure == null) return NotFound();
 
-        return Ok(departure.Bookings);
+        return Ok(departure.Bookings.Select(b => new BookingResponse
+        {
+            Id = b.Id,
+            Name = b.Name,
+            PassengerCount = b.PassengerCount,
+            HasVehicle = b.HasVehicle
+        }));
     }
 
     [HttpDelete("{id}/bookings/{bookingId}")]
     public IActionResult DeleteBooking(Guid id, Guid bookingId)
     {
+        if (id == Guid.Empty)
+        {
+            return BadRequest(new { error = "Invalid departure id" });
+        }
         var success = _service.RemoveBooking(id, bookingId);
         if (!success) return NotFound();
 

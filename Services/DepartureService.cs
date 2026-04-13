@@ -13,12 +13,17 @@ public class DepartureService
     public int GetRemainingCapacity(Departure departure)
         => departure.Capacity - departure.Bookings.Sum(b => b.PassengerCount);
 
-    public bool TryAddBooking(Guid departureId, Booking booking, out string error)
+    public bool TryAddBooking(Guid departureId, Booking booking, out string? error)
     {
         var departure = GetById(departureId);
         if (departure == null)
         {
             error = "Departure not found";
+            return false;
+        }
+        if (booking.PassengerCount <= 0)
+        {
+            error = "Passenger count must be greater than zero";
             return false;
         }
 
@@ -30,7 +35,7 @@ public class DepartureService
         }
 
         departure.Bookings.Add(booking);
-        error = string.Empty;
+        error = null;
         return true;
     }
 
@@ -39,7 +44,7 @@ public class DepartureService
         var departure = GetById(departureId);
         if (departure == null) return false;
 
-        var booking = departure.Bookings.FirstOrDefault(b => b.BookingId == bookingId);
+        var booking = departure.Bookings.FirstOrDefault(b => b.Id == bookingId);
         if (booking == null) return false;
 
         departure.Bookings.Remove(booking);
