@@ -1,7 +1,6 @@
 ﻿using FjordLineBooking.Data;
 using FjordLineBooking.Models;
 using FjordLineBooking.Services;
-using Xunit;
 
 namespace FjordLineBooking.Tests;
 
