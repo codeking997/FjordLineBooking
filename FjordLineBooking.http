@@ -1,6 +1,28 @@
 @FjordLineBooking_HostAddress = http://localhost:5082
 
-GET {{FjordLineBooking_HostAddress}}/weatherforecast/
+### Get departures
+GET {{FjordLineBooking_HostAddress}}/departures
 Accept: application/json
 
 ###
+
+### Create booking
+POST {{FjordLineBooking_HostAddress}}/departures/{id}/bookings
+Content-Type: application/json
+
+{
+  "name": "Carl",
+  "passengerCount": 2,
+  "hasVehicle": false
+}
+
+###
+
+### Get manifest
+GET {{FjordLineBooking_HostAddress}}/departures/{id}/manifest
+Accept: application/json
+
+###
+
+### Delete booking
+DELETE {{FjordLineBooking_HostAddress}}/departures/{id}/bookings/{bookingId}

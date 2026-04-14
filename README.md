@@ -9,7 +9,7 @@ The project was built as a take-home assignment focusing on backend design, busi
 
 ## 🧱 Tech Stack
 
-- .NET 8 (ASP.NET Core Web API)
+- .NET 10 (ASP.NET Core Web API)
 - C#
 - xUnit (unit testing)
 - Swagger / OpenAPI (API documentation)

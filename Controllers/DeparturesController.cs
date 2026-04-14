@@ -49,7 +49,15 @@ public class DeparturesController : ControllerBase
         };
 
         if (!_service.TryAddBooking(id, booking, out var error))
+        {
+            if (error == "Departure not found")
+                return NotFound(new { error });
+
+            if (error == "Not enough capacity")
+                return Conflict(new { error });
+
             return BadRequest(new { error });
+        }
 
         var response = new BookingResponse
         {
